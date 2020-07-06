@@ -21,6 +21,10 @@ public class ItemByUnit implements Item {
         return product.pricePerUnit().multiply(new BigDecimal(units));
     }
 
+    public BigDecimal pricePerUnit() {
+        return product.pricePerUnit();
+    }
+
     public BigDecimal discount() {
         return product.discounts().stream()
                 .map(discount -> discount.apply(this))

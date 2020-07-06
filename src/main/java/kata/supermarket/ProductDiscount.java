@@ -4,11 +4,9 @@ import java.math.BigDecimal;
 
 public class ProductDiscount implements Discount<ItemByUnit> {
     private final int minUnits;
-    private final BigDecimal discountAmount;
 
-    public ProductDiscount(final int minUnits, final BigDecimal discountAmount) {
+    public ProductDiscount(final int minUnits) {
         this.minUnits = minUnits;
-        this.discountAmount = discountAmount;
     }
 
     @Override
@@ -18,6 +16,6 @@ public class ProductDiscount implements Discount<ItemByUnit> {
 
     @Override
     public BigDecimal discountAmount(ItemByUnit item) {
-        return discountAmount;
+        return item.pricePerUnit();
     }
 }

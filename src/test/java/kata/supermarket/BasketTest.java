@@ -97,12 +97,12 @@ class BasketTest {
     }
     private static Item twoCansOfBakedBeansWithDiscount() {
         return new Product(new BigDecimal("2.99"))
-                .withDiscounts(Collections.singletonList(buyOneGetOneFreeDiscount("2.99")))
+                .withDiscounts(Collections.singletonList(buyOneGetOneFreeDiscount()))
                 .units(2);
     }
 
-    private static Discount<ItemByUnit> buyOneGetOneFreeDiscount(final String discountAmount) {
-        return new ProductDiscount(2, new BigDecimal(discountAmount));
+    private static Discount<ItemByUnit> buyOneGetOneFreeDiscount() {
+        return new ProductDiscount(2);
     }
 
     private static Arguments oneItemPricedByWeightWithDiscount() {
