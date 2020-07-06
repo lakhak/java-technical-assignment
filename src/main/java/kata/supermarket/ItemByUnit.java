@@ -23,8 +23,7 @@ public class ItemByUnit implements Item {
 
     public BigDecimal discount() {
         return product.discounts().stream()
-                .filter(discount -> discount.isApplicable(this))
-                .map(Discount::discountAmount)
+                .map(discount -> discount.apply(this))
                 .reduce(BigDecimal::add)
                 .orElse(BigDecimal.ZERO);
     }

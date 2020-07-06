@@ -17,7 +17,7 @@ public class ProductDiscount implements Discount<ItemByUnit> {
     }
 
     @Override
-    public BigDecimal discountAmount() {
+    public BigDecimal discountAmount(ItemByUnit item) {
         return discountAmount;
     }
 }

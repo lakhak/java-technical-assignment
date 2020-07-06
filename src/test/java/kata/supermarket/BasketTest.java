@@ -31,7 +31,8 @@ class BasketTest {
                 aSingleItemPricedByWeight(),
                 multipleItemsPricedByWeight(),
                 twoOfTheSameItemWithoutDiscount(),
-                twoOfTheSameItemWithDiscount()
+                twoOfTheSameItemWithDiscount(),
+                oneItemPricedByWeightWithDiscount()
         );
     }
 
@@ -102,5 +103,20 @@ class BasketTest {
 
     private static Discount<ItemByUnit> buyOneGetOneFreeDiscount(final String discountAmount) {
         return new ProductDiscount(2, new BigDecimal(discountAmount));
+    }
+
+    private static Arguments oneItemPricedByWeightWithDiscount() {
+        return Arguments.of("item priced by weight with discount", "2.29",
+                Collections.singletonList(oneKiloOfCarrotsWithDiscount()));
+    }
+
+    private static Item oneKiloOfCarrotsWithDiscount() {
+        return new WeighedProduct(new BigDecimal("4.58"))
+                .withDiscounts(Collections.singletonList(buyOneKiloForHalfPrice()))
+                .weighing(BigDecimal.ONE);
+    }
+
+    private static Discount<ItemByWeight> buyOneKiloForHalfPrice() {
+        return new WeighedProductDiscount(BigDecimal.ONE, new BigDecimal("0.5"));
     }
 }
