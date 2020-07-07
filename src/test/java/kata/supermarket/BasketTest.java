@@ -32,7 +32,8 @@ class BasketTest {
                 multipleItemsPricedByWeight(),
                 twoOfTheSameItemWithoutDiscount(),
                 twoOfTheSameItemWithDiscount(),
-                oneItemPricedByWeightWithDiscount()
+                oneItemPricedByWeightWithDiscount(),
+                multipleItemsWithAndWithoutDiscounts()
         );
     }
 
@@ -118,5 +119,10 @@ class BasketTest {
 
     private static Discount<ItemByWeight> buyOneKiloForHalfPrice() {
         return new WeighedProductDiscount(BigDecimal.ONE, new BigDecimal("0.5"));
+    }
+
+    private static Arguments multipleItemsWithAndWithoutDiscounts() {
+        return Arguments.of("multiples items with and without discounts", "3.38",
+                Arrays.asList(oneKiloOfCarrotsWithDiscount(), aPintOfMilk(), twoHundredGramsOfPickAndMix()));
     }
 }
